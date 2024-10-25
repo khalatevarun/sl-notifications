@@ -186,7 +186,7 @@ console.log(formatTimestamp(timestamp)); // Output: "22 Jun 2024, 4:30pm" (for e
         </div>
 
         <div className='parent-right'> 
-          <div>
+          <div className='notification-feed'>
             {notifications.map((notification:any)=>(
               <div 
                 id="notification-card" 
@@ -195,7 +195,7 @@ console.log(formatTimestamp(timestamp)); // Output: "22 Jun 2024, 4:30pm" (for e
               <div>
                 {notification.content.text}
               </div>
-              <div className='notif-timestamp'>
+              <div id="notification-timestamp" className='notif-timestamp'>
                 {notification.timestamp}
               </div>
               </div>

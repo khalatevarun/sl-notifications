@@ -72,7 +72,7 @@
   background-color: #90ee90;
 }
 
-@media (min-width: 769px) {
+@media (min-width: 768px) {
   .parent-container {
       flex-direction: row; 
   }
