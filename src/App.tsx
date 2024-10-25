@@ -36,6 +36,20 @@ function App() {
 
   }
 
+  const addInvalidNotification = async() => {
+    await fetch('/api/notifications',{
+      method:'POST',
+      body: JSON.stringify({
+        "type": "alert",
+        "content": {
+          "text": "New notification alerts!"
+        },
+        "read": "not read"
+      }),
+    }).then((response)=> response.json()).then((res)=>console.log(res));
+    
+  }
+
   return (
     <>
       <div>
@@ -53,6 +67,9 @@ function App() {
         </button>
         <button onClick={addNotifications}>
           Post Notifications
+        </button>
+        <button onClick={addInvalidNotification}>
+          Post Invalid Notifications
         </button>
         <button onClick={deleteNotifications}>
           Delete Notifications

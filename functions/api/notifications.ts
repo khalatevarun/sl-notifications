@@ -14,6 +14,27 @@ export async function onRequestPost(context){
 
   const notificationsArray = Array.isArray(newNotifications) ? newNotifications : [newNotifications];
 
+
+    // Valid notification types
+    const validTypes = ['alert', 'info', 'success'];
+
+
+  // Validate each notification
+  const isValidNotification = (notification) =>
+    notification &&
+    validTypes.includes(notification.type) &&
+    notification.content &&
+    typeof notification.content.text === 'string' &&
+    typeof notification.read === 'boolean';
+
+    for (const notification of notificationsArray) {
+      if (!isValidNotification(notification)) {
+        return new Response(JSON.stringify({ error: 'Invalid notification format' }), {
+          status: 400,
+        });
+      }
+    }
+
   const notificationsWithMetadata = notificationsArray.map((notification) => ({
     ...notification,
     id: uuidv4(),           
