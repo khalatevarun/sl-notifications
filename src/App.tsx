@@ -1,21 +1,46 @@
-import './App.css'
 import { useEffect, useState } from 'react';
+import './App.css'
+
+type Notification = {
+  type: 'alert'|'info'|'success';
+  content: {
+    text: string;
+  };
+  timestamp: number;
+  read: boolean;
+}
+
+type NotificationType = {
+  label: string;
+  value: string;
+}
+
+const NOTIFICATION_TYPE: NotificationType[] = [
+  { label: 'Alert', value: 'label'},
+  { label: 'Info', value: 'info'},
+  { label: 'Success', value: 'success'}
+]
 
 function App() {
 
+  const [notifications, setNotifications] = useState<Notification[]>([]);
   const [formData, setFormData] = useState({
     text: '',
     type: ''
   });
 
-  
-  const [notifications, setNotifications] = useState<any>([]);
-
   const getNotifications = async() =>{
    await fetch('/api/notifications',{
       method:'GET',
-    }).then((response)=> response.json()).then((res)=> setNotifications(getFormatNotifications(res)));
-
+    })
+    .then((response)=> response.json())
+    .then((res)=> {
+      const formattedNotifications = getFormatNotifications(res);
+      setNotifications(formattedNotifications);
+    })
+    .catch((err)=>{
+      console.error(err);
+    });
   }
 
 
@@ -31,15 +56,18 @@ function App() {
       },
       read: false
     }
+
    await fetch('/api/notifications',{
       method:'POST',
       body: JSON.stringify(notification),
-    }).then((response)=> response.json()).then((res)=>console.log(res));
-    
-    setFormData({
-      text:'',
-      type: ''
     })
+    .then(()=>{
+      setFormData({
+        text:'',
+        type: ''
+      });
+    })
+    .catch((err)=> console.error(err));
   }
 
   useEffect(() => {
@@ -61,12 +89,11 @@ function App() {
       
   }
 
-  const getFormatNotifications = (notifications:any) => {
-    const unreadNotifications = notifications.filter((notification:any)=> !notification.read);
-    const sortedNotifications = unreadNotifications.sort((a: any, b: any) => b.timestamp - a.timestamp);
+  const getFormatNotifications = (notifications:Notification[]) => {
+    const unreadNotifications = notifications.filter((notification:Notification)=> !notification.read);
+    const sortedNotifications = unreadNotifications.sort((a: Notification, b: Notification) => b.timestamp - a.timestamp);
 
     return sortedNotifications.map((notification: any)=>{
-
         const { timestamp } = notification;
 
         return {
@@ -76,32 +103,22 @@ function App() {
     })
   }
 
-  function formatTimestamp(timestamp:any) {
-    // Create a Date object from the timestamp
+function formatTimestamp(timestamp:number) {
     const date = new Date(timestamp);
 
-    // Array of month abbreviations
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const monthName = months[date.getMonth()];
 
-    // Extract day, year, hours, and minutes
     const day = date.getDate();
     const year = date.getFullYear();
     let hours = date.getHours();
     const minutes = String(date.getMinutes()).padStart(2, '0');
 
-    // Determine am/pm and adjust 12-hour format
     const period = hours >= 12 ? 'pm' : 'am';
     hours = hours % 12 || 12;
 
-    // Construct the formatted date string
     return `${day} ${monthName} ${year}, ${hours}:${minutes}${period}`;
-}
-
-// Example usage
-const timestamp = 1729839906874;
-console.log(formatTimestamp(timestamp)); // Output: "22 Jun 2024, 4:30pm" (for example)
-
+  }
 
 
 
@@ -116,24 +133,23 @@ console.log(formatTimestamp(timestamp)); // Output: "22 Jun 2024, 4:30pm" (for e
             {/* <option value="" disabled selected>
               Choose type
              </option> */}
-              <option value="alert">Alert</option>
-              <option value="info">Info</option>
-              <option value="success">Success</option>
+              {NOTIFICATION_TYPE.map((type: NotificationType)=>(
+                <option value={type.value}>{type.label}</option>
+              ))}
             </select>
             <button className='notif-form-button' id="send-notification-btn" type='submit'>Send</button>
             </div>
           </form>
-
         <div id='notification-feed' className='parent-right'> 
-            {notifications.map((notification:any)=>(
+            {notifications.map((notification:Notification)=>(
               <div 
-                className={`notification-card ${notification.type}-bg`}
+                className={`notification-card ${notification?.type}-bg`}
                 >
               <p className='notification-message'>
-                {notification.content.text}
+                {notification?.content?.text}
               </p>
-              <div className="notification-timestamp">
-                {notification.timestamp}
+              <div className="notification-timestamp">  
+                {notification?.timestamp}
               </div>
               </div>
             ))}

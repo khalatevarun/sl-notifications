@@ -3,7 +3,6 @@ import { v4 as uuidv4 } from 'uuid';
 export async function onRequest(context) {
     const notificationsList = await context.env.NFS.get("notifications");
     return new Response(notificationsList);
-  
 }
 
 
@@ -14,9 +13,7 @@ export async function onRequestPost(context){
 
   const notificationsArray = Array.isArray(newNotifications) ? newNotifications : [newNotifications];
 
-
-    // Valid notification types
-    const validTypes = ['alert', 'info', 'success'];
+  const validTypes = ['alert', 'info', 'success'];
 
 
   // Validate each notification
