@@ -15,7 +15,6 @@ const NotificationForm = (props:any) => {
    return (
      <form id="notification-form"  onSubmit={handleSubmit} className='parent-left'>
         <div className='notif-form'>
-            <label htmlFor="notifcation-message">Enter text</label>
             <textarea className='notif-form-textarea' placeholder='Message' id="notification-message" required value={formData.text} onChange={(e) => onFormDataChange(e, 'text') } />
             <select id="notification-type" value={formData.type} required onChange={(e) => onFormDataChange(e, 'type') }>
             {NOTIFICATION_TYPE.map((type: NotificationType)=>(
