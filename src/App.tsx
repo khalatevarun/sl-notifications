@@ -114,24 +114,6 @@ function App() {
 
   }
 
-  const addInvalidNotification = async() => {
-    await fetch('/api/notifications',{
-      method:'POST',
-      body: JSON.stringify({
-        "type": "alert",
-        "content": {
-          "text": "New notification alerts!"
-        },
-        "read": "not read"
-      }),
-    }).then((response)=> response.json()).then((res)=>console.log(res));
-
-    console.log("REACHED HERE");
-
-   
-    
-  }
-
   useEffect(()=>{
     getNotifications();
   },[])
@@ -232,25 +214,6 @@ console.log(formatTimestamp(timestamp)); // Output: "22 Jun 2024, 4:30pm" (for e
 
         </div>
       </div>
-      
-      <div className="card">
-        <button onClick={getNotifications}>
-          Get Notifications
-        </button>
-        <button onClick={addNotifications}>
-          Post Notifications
-        </button>
-        <button onClick={addInvalidNotification}>
-          Post Invalid Notifications
-        </button>
-        <button onClick={deleteNotifications}>
-          Delete Notifications
-        </button>
-      
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
