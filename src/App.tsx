@@ -62,7 +62,8 @@ function App() {
   }
 
   const getFormatNotifications = (notifications:any) => {
-    const sortedNotifications = notifications.sort((a:any, b:any) => a.timestamp - b.timestamp);
+    const unreadNotifications = notifications.filter((notification:any)=> !notification.read);
+    const sortedNotifications = unreadNotifications.sort((a: any, b: any) => b.timestamp - a.timestamp);
 
     return sortedNotifications.map((notification: any)=>{
 
