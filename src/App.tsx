@@ -62,6 +62,7 @@ function App() {
       body: JSON.stringify(notification),
     })
     .then(()=>{
+      // empty form once api returns 200 status code
       setFormData({
         text:'',
         type: ''
@@ -86,9 +87,9 @@ function App() {
   const handleSubmit = (e:any) => {
       e.preventDefault();
       addNotifications(formData);
-      
   }
 
+  // to filter, sort and modify the notifications data before rendering
   const getFormatNotifications = (notifications:Notification[]) => {
     const unreadNotifications = notifications.filter((notification:Notification)=> !notification.read);
     const sortedNotifications = unreadNotifications.sort((a: Notification, b: Notification) => b.timestamp - a.timestamp);
@@ -103,6 +104,7 @@ function App() {
     })
   }
 
+// helper function to format date exactly as mentioned in the instructions
 function formatTimestamp(timestamp:number) {
     const date = new Date(timestamp);
 
