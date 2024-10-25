@@ -1,14 +1,14 @@
 export async function onRequest() {
-    const preferenceData = JSON.stringify({
+    const preferenceData = {
         "displayDuration": 5000,
         "preferredTypes": ["alert", "info"],
-    });
+    };
 
     const response = new Response();
-    const newCookie = `preferences=${preferenceData}; Path=/`;
+    const newCookie = `preferences=${JSON.stringify(preferenceData)}; Path=/`;
 
-    response.headers.set("Set-Cookie",newCookie);
     response.headers.set("Content-Type","application/json");
+    response.headers.set("Set-Cookie",newCookie);
     
   
     return response;

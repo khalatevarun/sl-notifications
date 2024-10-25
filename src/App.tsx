@@ -107,9 +107,9 @@ console.log(formatTimestamp(timestamp)); // Output: "22 Jun 2024, 4:30pm" (for e
   return (
     <>
       <div className='parent-container'>
-        <div id="notification-form" className='parent-left'>
-          <form  onSubmit={handleSubmit} className='notif-form'>
-          <div className='notif-form-title'>Create Notification</div>
+          <form id="notification-form"  onSubmit={handleSubmit} className='parent-left '>
+            <div className='notif-form'>
+              <div className='notif-form-title'>Create Notification</div>
             <textarea className='notif-form-textarea' placeholder='Message' id="notification-message" required value={formData.text} onChange={(e) => onFormDataChange(e, 'text') } />
             <select id="notification-type" value={formData.type} required onChange={(e) => onFormDataChange(e, 'type') }>
             {/* <option value="" disabled selected>
@@ -120,8 +120,8 @@ console.log(formatTimestamp(timestamp)); // Output: "22 Jun 2024, 4:30pm" (for e
               <option value="success">Success</option>
             </select>
             <button className='notif-form-button' id="send-notification-btn" type='submit'>Send</button>
+            </div>
           </form>
-        </div>
 
         <div id='notification-feed' className='parent-right'> 
             {notifications.map((notification:any)=>(
