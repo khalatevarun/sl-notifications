@@ -25,6 +25,7 @@ function App() {
     .then((response)=> response.json())
     .then((res)=> {
       const formattedNotifications = getFormatNotifications(res);
+      console.log("NOTIFICATIONS>>>", formattedNotifications);
       setNotifications(formattedNotifications);
     })
     .catch((err)=>{
