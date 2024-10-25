@@ -16,3 +16,21 @@
 .notification-display {
   
 }
+
+.notif-card {
+  height:70px;
+  border: 1px solid;
+  margin-bottom: 10px;
+}
+
+.alert-bg {
+  background-color: #ffcccb;
+}
+
+.info-bg {
+  background-color:  #add8e6;
+}
+
+.success-bg {
+  background-color: #90ee90;
+}

@@ -1,5 +1,5 @@
 import './App.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
 
@@ -9,12 +9,19 @@ function App() {
   });
 
 
-  const getNotification = async() =>{
+  const [notifications, setNotifications] = useState<any>([]);
+
+  
+
+
+  const getNotifications = async() =>{
    await fetch('/api/notifications',{
       method:'GET',
-    }).then((response)=> response.json()).then((res)=>console.log(res));
+    }).then((response)=> response.json()).then((res)=> setNotifications(getFormatNotifications(res)));
 
   }
+
+
 
   const addNotifications = async(data:any) => {
 
@@ -64,6 +71,10 @@ function App() {
     
   }
 
+  useEffect(()=>{
+    getNotifications();
+  },[])
+
 
   const onFormDataChange = (e: React.ChangeEvent<HTMLTextAreaElement|HTMLSelectElement>, key:string) => {
     const value = e.target.value;
@@ -76,6 +87,23 @@ function App() {
       addNotifications(formData);
       
   }
+
+  const getFormatNotifications = (notifications:any) => {
+    const sortedNotifications = notifications.sort((a:any, b:any) => a.timestamp - b.timestamp);
+
+    return sortedNotifications.map((notification: any)=>{
+
+        const { timestamp } = notification;
+
+        const formattedTimeStamp = (new Date(timestamp)).toLocaleString();
+
+        return {
+          ...notification,
+          timestamp: formattedTimeStamp
+        }
+    })
+  }
+
 
 
   return (
@@ -96,13 +124,31 @@ function App() {
             <button id="send-notification-btn" type='submit'>Send</button>
           </form>
         </div>
+
+        <div className='parent-right'> 
+          <div>
+            {notifications.map((notification:any)=>(
+              <div 
+                id="notification-card" 
+                className={`notif-card ${notification.type}-bg`}
+                >
+              <div>
+                {notification.content.text}
+              </div>
+              <div>
+                {notification.timestamp}
+              </div>
+              </div>
+            ))}
+          </div>
+        </div>
         <div>
 
         </div>
       </div>
       
       <div className="card">
-        <button onClick={getNotification}>
+        <button onClick={getNotifications}>
           Get Notifications
         </button>
         <button onClick={addNotifications}>
