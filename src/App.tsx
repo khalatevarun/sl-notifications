@@ -1,6 +1,5 @@
 import './App.css'
 import { useEffect, useState } from 'react';
-import List from 'rc-virtual-list';
 
 function App() {
 
@@ -17,12 +16,6 @@ function App() {
       method:'GET',
     }).then((response)=> response.json()).then((res)=> setNotifications(getFormatNotifications(res)));
 
-  }
-
-  const getPreferences = async() => {
-    await fetch('/api/preferences',{
-      method:'GET',
-    }).then(()=>{});
   }
 
 
@@ -51,7 +44,6 @@ function App() {
 
   useEffect(() => {
     const intervalId = setInterval(getNotifications, 4000);
-    getPreferences();
 
     return () => clearInterval(intervalId);
 }, []); 
@@ -120,6 +112,9 @@ console.log(formatTimestamp(timestamp)); // Output: "22 Jun 2024, 4:30pm" (for e
           <div className='notif-form-title'>Create Notification</div>
             <textarea className='notif-form-textarea' placeholder='Message' id="notification-message" required value={formData.text} onChange={(e) => onFormDataChange(e, 'text') } />
             <select id="notification-type" value={formData.type} required onChange={(e) => onFormDataChange(e, 'type') }>
+            {/* <option value="" disabled selected>
+              Choose type
+             </option> */}
               <option value="alert">Alert</option>
               <option value="info">Info</option>
               <option value="success">Success</option>
@@ -129,9 +124,8 @@ console.log(formatTimestamp(timestamp)); // Output: "22 Jun 2024, 4:30pm" (for e
         </div>
 
         <div id='notification-feed' className='parent-right'> 
-          <div className='notif-feed'>
-         {notifications.length > 0 && <List data={notifications} height={380} itemHeight={70} itemKey="id">
-            {notification => <div 
+            {notifications.map((notification:any)=>(
+              <div 
                 className={`notification-card ${notification.type}-bg`}
                 >
               <p className='notification-message'>
@@ -140,9 +134,8 @@ console.log(formatTimestamp(timestamp)); // Output: "22 Jun 2024, 4:30pm" (for e
               <div className="notification-timestamp">
                 {notification.timestamp}
               </div>
-              </div>}
-          </List>}
-          </div>
+              </div>
+            ))}
         </div>
         <div>
 
