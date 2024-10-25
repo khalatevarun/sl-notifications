@@ -9,71 +9,51 @@ function App() {
   });
 
 
-  const [notifications, setNotifications] = useState<any>([{
-    type:'alert',
-    "timestamp":1729835827065,
-    content:{text:'Hello'}
-  },
-  {
-    type:'success',
-    "timestamp":1729835827065,
-    content:{text:'Hello'}
-  },
-  {
-    type:'info',
-    "timestamp":1729835827065,
-    content:{text:'Hello'}
-  },
-  {
-    type:'alert',
-    "timestamp":1729835827065,
-    content:{text:'Hello'}
-  },
-  {
-    type:'success',
-    "timestamp":1729835827065,
-    content:{text:'Hello'}
-  },
-  {
-    type:'info',
-    "timestamp":1729835827065,
-    content:{text:'Hello'}
-  },
-  {
-    type:'alert',
-    "timestamp":1729835827065,
-    content:{text:'Hello'}
-  },
-  {
-    type:'success',
-    "timestamp":1729835827065,
-    content:{text:'Hello'}
-  },
-  {
-    type:'info',
-    "timestamp":1729835827065,
-    content:{text:'Hello'}
-  },
-  {
-    type:'alert',
-    "timestamp":1729835827065,
-    content:{text:'Hello'}
-  },
-  {
-    type:'success',
-    "timestamp":1729835827065,
-    content:{text:'Hello'}
-  },
-  {
-    type:'info',
-    "timestamp":1729835827065,
-    content:{text:'Hello'}
-  }
-]
-  );
+//   const [notifications, setNotifications] = useState<any>([{
+//     type:'alert',
+//     "timestamp":1729835827065,
+//     content:{text:'sljdfhkhfbgsjhvskjfkdnskfjhdsjfljdsjfsdfnslfsdjdvsd.mv sd,vknsdlv.knsdv.mdsnv.skjfdjfhjdfdfsdfdsflisjdflds'}
+//   },
+//   {
+//     type:'success',
+//     "timestamp":1729835827065,
+//     content:{text:'Hello'}
+//   },
+//   {
+//     type:'info',
+//     "timestamp":1729835827065,
+//     content:{text:'sljdfhkhfbgsjhvskjfkdnskfjhdsjfljdsjfsdfnslfsdjdvsd.mv sd,vknsdlv.knsdv.mdsnv.skjfdjfhjdfdfsdfdsflisjdflds'}
+//   },
+//   {
+//     type:'alert',
+//     "timestamp":1729835827065,
+//     content:{text:'Hello'}
+//   },
+//   {
+//     type:'success',
+//     "timestamp":1729835827065,
+//     content:{text:'sljdfhkhfbgsjhvskjfkdnskfjhdsjfljdsjfsdfnslfsdjdvsd.mv sd,vknsdlv.knsdv.mdsnv.skjfdjfhjdfdfsdfdsflisjdflds'}
+//   },
+//   {
+//     type:'info',
+//     "timestamp":1729835827065,
+//     content:{text:'Hello'}
+//   },
+//   {
+//     type:'alert',
+//     "timestamp":1729835827065,
+//     content:{text:'Hello'}
+//   },
+//   {
+//     type:'success',
+//     "timestamp":1729835827065,
+//     content:{text:'Hello'}
+//   }
+// ]
+//   );
 
   
-  // const [notifications, setNotifications] = useState<any>([]);
+  const [notifications, setNotifications] = useState<any>([]);
 
   const getNotifications = async() =>{
    await fetch('/api/notifications',{
