@@ -11,6 +11,7 @@
     "deploy": "npm run build && wrangler pages deploy ./dist"
   },
   "dependencies": {
+    "rc-virtual-list": "^3.14.8",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "uuid": "^10.0.0"

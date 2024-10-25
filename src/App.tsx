@@ -1,5 +1,6 @@
 import './App.css'
 import { useEffect, useState } from 'react';
+import List from 'rc-virtual-list';
 
 function App() {
 
@@ -7,50 +8,6 @@ function App() {
     text: '',
     type: ''
   });
-
-
-//   const [notifications, setNotifications] = useState<any>([{
-//     type:'alert',
-//     "timestamp":1729835827065,
-//     content:{text:'sljdfhkhfbgsjhvskjfkdnskfjhdsjfljdsjfsdfnslfsdjdvsd.mv sd,vknsdlv.knsdv.mdsnv.skjfdjfhjdfdfsdfdsflisjdflds'}
-//   },
-//   {
-//     type:'success',
-//     "timestamp":1729835827065,
-//     content:{text:'Hello'}
-//   },
-//   {
-//     type:'info',
-//     "timestamp":1729835827065,
-//     content:{text:'sljdfhkhfbgsjhvskjfkdnskfjhdsjfljdsjfsdfnslfsdjdvsd.mv sd,vknsdlv.knsdv.mdsnv.skjfdjfhjdfdfsdfdsflisjdflds'}
-//   },
-//   {
-//     type:'alert',
-//     "timestamp":1729835827065,
-//     content:{text:'Hello'}
-//   },
-//   {
-//     type:'success',
-//     "timestamp":1729835827065,
-//     content:{text:'sljdfhkhfbgsjhvskjfkdnskfjhdsjfljdsjfsdfnslfsdjdvsd.mv sd,vknsdlv.knsdv.mdsnv.skjfdjfhjdfdfsdfdsflisjdflds'}
-//   },
-//   {
-//     type:'info',
-//     "timestamp":1729835827065,
-//     content:{text:'Hello'}
-//   },
-//   {
-//     type:'alert',
-//     "timestamp":1729835827065,
-//     content:{text:'Hello'}
-//   },
-//   {
-//     type:'success',
-//     "timestamp":1729835827065,
-//     content:{text:'Hello'}
-//   }
-// ]
-//   );
 
   
   const [notifications, setNotifications] = useState<any>([]);
@@ -156,9 +113,6 @@ console.log(formatTimestamp(timestamp)); // Output: "22 Jun 2024, 4:30pm" (for e
           <div className='notif-form-title'>Create Notification</div>
             <textarea className='notif-form-textarea' placeholder='Message' id="notification-message" required value={formData.text} onChange={(e) => onFormDataChange(e, 'text') } />
             <select id="notification-type" value={formData.type} required onChange={(e) => onFormDataChange(e, 'type') }>
-            {/* <option value="" disabled selected>
-              Choose type
-             </option> */}
               <option value="alert">Alert</option>
               <option value="info">Info</option>
               <option value="success">Success</option>
@@ -169,8 +123,8 @@ console.log(formatTimestamp(timestamp)); // Output: "22 Jun 2024, 4:30pm" (for e
 
         <div id='notification-feed' className='parent-right'> 
           <div className='notif-feed'>
-            {notifications.map((notification:any)=>(
-              <div 
+         {notifications.length > 0 && <List data={notifications} height={380} itemHeight={70} itemKey="id">
+            {notification => <div 
                 className={`notification-card ${notification.type}-bg`}
                 >
               <p className='notification-message'>
@@ -179,8 +133,8 @@ console.log(formatTimestamp(timestamp)); // Output: "22 Jun 2024, 4:30pm" (for e
               <div className="notification-timestamp">
                 {notification.timestamp}
               </div>
-              </div>
-            ))}
+              </div>}
+          </List>}
           </div>
         </div>
         <div>
