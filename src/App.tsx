@@ -19,6 +19,12 @@ function App() {
 
   }
 
+  const getPreferences = async() => {
+    await fetch('/api/preferences',{
+      method:'GET',
+    }).then(()=>{});
+  }
+
 
 
   const addNotifications = async(data:any) => {
@@ -45,6 +51,7 @@ function App() {
 
   useEffect(() => {
     const intervalId = setInterval(getNotifications, 4000);
+    getPreferences();
 
     return () => clearInterval(intervalId);
 }, []); 
