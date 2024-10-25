@@ -86,9 +86,11 @@ function App() {
     })
   }
 
-  useEffect(()=>{
-    getNotifications();
-  },[])
+  useEffect(() => {
+    const intervalId = setInterval(getNotifications, 4000);
+
+    return () => clearInterval(intervalId);
+}, []); 
 
 
   const onFormDataChange = (e: React.ChangeEvent<HTMLTextAreaElement|HTMLSelectElement>, key:string) => {
