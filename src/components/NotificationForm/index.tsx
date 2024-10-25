@@ -15,14 +15,12 @@ const NotificationForm = (props:any) => {
    return (
      <form id="notification-form"  onSubmit={handleSubmit} className='parent-left '>
         <div className='notif-form'>
-            <div className='notif-form-title'>Create Notification</div>
             <label htmlFor="notifcation-message">Enter text</label>
             <textarea className='notif-form-textarea' placeholder='Message' id="notification-message" required value={formData.text} onChange={(e) => onFormDataChange(e, 'text') } />
-            <label htmlFor='notification-type'>Choose type</label>
             <select id="notification-type" value={formData.type} required onChange={(e) => onFormDataChange(e, 'type') }>
-            {/* <option value="" disabled selected>
-            Choose type
-            </option> */}
+            <option value="" disabled selected>
+                Choose type
+            </option>
             {NOTIFICATION_TYPE.map((type: NotificationType)=>(
                 <option value={type.value}>{type.label}</option>
             ))}
