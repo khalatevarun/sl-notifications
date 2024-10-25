@@ -9,10 +9,71 @@ function App() {
   });
 
 
-  const [notifications, setNotifications] = useState<any>([]);
+//   const [notifications, setNotifications] = useState<any>([{
+//     type:'alert',
+//     "timestamp":1729835827065,
+//     content:{text:'Hello'}
+//   },
+//   {
+//     type:'success',
+//     "timestamp":1729835827065,
+//     content:{text:'Hello'}
+//   },
+//   {
+//     type:'info',
+//     "timestamp":1729835827065,
+//     content:{text:'Hello'}
+//   },
+//   {
+//     type:'alert',
+//     "timestamp":1729835827065,
+//     content:{text:'Hello'}
+//   },
+//   {
+//     type:'success',
+//     "timestamp":1729835827065,
+//     content:{text:'Hello'}
+//   },
+//   {
+//     type:'info',
+//     "timestamp":1729835827065,
+//     content:{text:'Hello'}
+//   },
+//   {
+//     type:'alert',
+//     "timestamp":1729835827065,
+//     content:{text:'Hello'}
+//   },
+//   {
+//     type:'success',
+//     "timestamp":1729835827065,
+//     content:{text:'Hello'}
+//   },
+//   {
+//     type:'info',
+//     "timestamp":1729835827065,
+//     content:{text:'Hello'}
+//   },
+//   {
+//     type:'alert',
+//     "timestamp":1729835827065,
+//     content:{text:'Hello'}
+//   },
+//   {
+//     type:'success',
+//     "timestamp":1729835827065,
+//     content:{text:'Hello'}
+//   },
+//   {
+//     type:'info',
+//     "timestamp":1729835827065,
+//     content:{text:'Hello'}
+//   }
+// ]
+//   );
 
   
-
+  const [notifications, setNotifications] = useState<any>([]);
 
   const getNotifications = async() =>{
    await fetch('/api/notifications',{
@@ -95,14 +156,39 @@ function App() {
 
         const { timestamp } = notification;
 
-        const formattedTimeStamp = (new Date(timestamp)).toLocaleString();
-
         return {
           ...notification,
-          timestamp: formattedTimeStamp
+          timestamp: formatTimestamp(timestamp)
         }
     })
   }
+
+  function formatTimestamp(timestamp:any) {
+    // Create a Date object from the timestamp
+    const date = new Date(timestamp);
+
+    // Array of month abbreviations
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const monthName = months[date.getMonth()];
+
+    // Extract day, year, hours, and minutes
+    const day = date.getDate();
+    const year = date.getFullYear();
+    let hours = date.getHours();
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+
+    // Determine am/pm and adjust 12-hour format
+    const period = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12 || 12;
+
+    // Construct the formatted date string
+    return `${day} ${monthName} ${year}, ${hours}:${minutes}${period}`;
+}
+
+// Example usage
+const timestamp = 1729839906874;
+console.log(formatTimestamp(timestamp)); // Output: "22 Jun 2024, 4:30pm" (for example)
+
 
 
 
@@ -110,18 +196,18 @@ function App() {
     <>
       <div className='parent-container'>
         <div className='parent-left'>
-          <div>Create Notification</div>
-          <form id="notification-form" onSubmit={handleSubmit} className='create-notification-form'>
-            <textarea id="notification-message" required value={formData.text} onChange={(e) => onFormDataChange(e, 'text') } />
+          <form id="notification-form" onSubmit={handleSubmit} className='notif-form'>
+          <div className='notif-form-title'>Create Notification</div>
+            <textarea className='notif-form-textarea' placeholder='Message' id="notification-message" required value={formData.text} onChange={(e) => onFormDataChange(e, 'text') } />
             <select id="notification-type" value={formData.type} required onChange={(e) => onFormDataChange(e, 'type') }>
             <option value="" disabled selected>
-              Select type
+              Choose type
              </option>
               <option value="alert">Alert</option>
               <option value="info">Info</option>
               <option value="success">Success</option>
             </select>
-            <button id="send-notification-btn" type='submit'>Send</button>
+            <button className='notif-form-button' id="send-notification-btn" type='submit'>Send</button>
           </form>
         </div>
 
@@ -135,7 +221,7 @@ function App() {
               <div>
                 {notification.content.text}
               </div>
-              <div>
+              <div className='notif-timestamp'>
                 {notification.timestamp}
               </div>
               </div>
