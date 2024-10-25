@@ -1,0 +1,33 @@
+  .parent-left{
+    padding: 20px;
+    border: 1px solid black;
+    gap: 20px;
+  }
+  
+  .notif-form-title {
+    font-size: x-large;
+    margin-bottom: 16px;
+  }
+  
+  .notif-form-button {
+    margin-top: auto;
+  }
+  
+  .notif-form{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+  }
+  
+  .notif-form-textarea {
+    padding: 12px;
+    height: 120px;
+  }
+
+  @media (min-width: 768px) {
+  
+    .parent-left{
+      flex:1;
+    }
+  }

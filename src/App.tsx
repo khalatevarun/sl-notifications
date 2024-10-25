@@ -1,25 +1,12 @@
 import { useEffect, useState } from 'react';
+
+import NotificationFeed from './components/NotificationFeed';
+import NotificationForm from './components/NotificationForm';
+
+import { Notification } from './utility/types';
+import { formatTimestamp } from './utility/helper';
+
 import './App.css'
-
-type Notification = {
-  type: 'alert'|'info'|'success';
-  content: {
-    text: string;
-  };
-  timestamp: number;
-  read: boolean;
-}
-
-type NotificationType = {
-  label: string;
-  value: string;
-}
-
-const NOTIFICATION_TYPE: NotificationType[] = [
-  { label: 'Alert', value: 'label'},
-  { label: 'Info', value: 'info'},
-  { label: 'Success', value: 'success'}
-]
 
 function App() {
 
@@ -29,6 +16,8 @@ function App() {
     type: ''
   });
 
+
+  // fetch notifications
   const getNotifications = async() =>{
    await fetch('/api/notifications',{
       method:'GET',
@@ -44,7 +33,7 @@ function App() {
   }
 
 
-
+  // add a new notification
   const addNotifications = async(data:any) => {
 
     const {type, text} = data;
@@ -62,7 +51,7 @@ function App() {
       body: JSON.stringify(notification),
     })
     .then(()=>{
-      // empty form once api returns 200 status code
+      // reset form once api returns 200 status code
       setFormData({
         text:'',
         type: ''
@@ -84,6 +73,7 @@ function App() {
     setFormData({...formData, [key]: value});
   }
 
+  // on form submit
   const handleSubmit = (e:any) => {
       e.preventDefault();
       addNotifications(formData);
@@ -104,63 +94,19 @@ function App() {
     })
   }
 
-// helper function to format date exactly as mentioned in the instructions
-function formatTimestamp(timestamp:number) {
-    const date = new Date(timestamp);
-
-    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    const monthName = months[date.getMonth()];
-
-    const day = date.getDate();
-    const year = date.getFullYear();
-    let hours = date.getHours();
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-
-    const period = hours >= 12 ? 'pm' : 'am';
-    hours = hours % 12 || 12;
-
-    return `${day} ${monthName} ${year}, ${hours}:${minutes}${period}`;
-  }
-
-
 
   return (
     <>
       <div className='parent-container'>
-          <form id="notification-form"  onSubmit={handleSubmit} className='parent-left '>
-            <div className='notif-form'>
-              <div className='notif-form-title'>Create Notification</div>
-            <label htmlFor="notifcation-message">Enter text</label>
-            <textarea className='notif-form-textarea' placeholder='Message' id="notification-message" required value={formData.text} onChange={(e) => onFormDataChange(e, 'text') } />
-            <label htmlFor='notification-type'>Choose type</label>
-            <select id="notification-type" value={formData.type} required onChange={(e) => onFormDataChange(e, 'type') }>
-            {/* <option value="" disabled selected>
-              Choose type
-             </option> */}
-              {NOTIFICATION_TYPE.map((type: NotificationType)=>(
-                <option value={type.value}>{type.label}</option>
-              ))}
-            </select>
-            <button className='notif-form-button' id="send-notification-btn" type='submit'>Send</button>
-            </div>
-          </form>
-        <div id='notification-feed' className='parent-right'> 
-            {notifications.map((notification:Notification)=>(
-              <div 
-                className={`notification-card ${notification?.type}-bg`}
-                >
-              <p className='notification-message'>
-                {notification?.content?.text}
-              </p>
-              <div className="notification-timestamp">  
-                {notification?.timestamp}
-              </div>
-              </div>
-            ))}
-        </div>
-        <div>
-        </div>
-        <img className='cloudflare-logo' src="src/assets/cf-logo.png"/>
+         <NotificationForm
+            handleSubmit={handleSubmit}
+            onFormDataChange={onFormDataChange}
+            formData={formData}
+         />
+         <NotificationFeed
+            notifications={notifications}
+         />
+          <img className='cloudflare-logo' src="src/assets/cf-logo.png"/>
       </div>
     </>
   )

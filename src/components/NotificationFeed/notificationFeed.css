@@ -1,0 +1,47 @@
+.parent-right{
+    padding: 20px;
+    border: 1px solid black;
+    height: 400px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+.notification-card {
+    height:70px;
+    padding: 4px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+  
+  .notification-timestamp {
+    margin-top: auto;
+    font-size: small;
+  }
+  
+  .notification-message {
+    margin: 0;
+    font-size: small;
+  }
+  
+  .alert-bg {
+    background-color: #ffcccb;
+  }
+  
+  .info-bg {
+    background-color:  #add8e6;
+  }
+  
+  .success-bg {
+    background-color: #90ee90;
+  }
+
+  @media (min-width: 768px) {
+    .parent-right{  
+      flex: 1;
+    }
+  }
