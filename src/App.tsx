@@ -106,14 +106,6 @@ function App() {
     })
   }
 
-  const deleteNotifications = async() => {
-    await fetch('/api/notifications',{
-      method:'DELETE',
-    }).then((response)=> response.json()).then((res)=>console.log(res));
-
-
-  }
-
   useEffect(()=>{
     getNotifications();
   },[])
