@@ -148,9 +148,9 @@ console.log(formatTimestamp(timestamp)); // Output: "22 Jun 2024, 4:30pm" (for e
 
   return (
     <>
-      <div className='parent-container'>
+      <div id="notification-form" className='parent-container'>
         <div className='parent-left'>
-          <form id="notification-form" onSubmit={handleSubmit} className='notif-form'>
+          <form  onSubmit={handleSubmit} className='notif-form'>
           <div className='notif-form-title'>Create Notification</div>
             <textarea className='notif-form-textarea' placeholder='Message' id="notification-message" required value={formData.text} onChange={(e) => onFormDataChange(e, 'text') } />
             <select id="notification-type" value={formData.type} required onChange={(e) => onFormDataChange(e, 'type') }>
