@@ -82,9 +82,9 @@ function App() {
   // to filter, sort and modify the notifications data before rendering
   const getFormatNotifications = (notifications:Notification[]) => {
     const unreadNotifications = notifications.filter((notification:Notification)=> !notification.read);
-    const sortedNotifications = unreadNotifications.sort((a: Notification, b: Notification) => b.timestamp - a.timestamp);
+     unreadNotifications.sort((a: Notification, b: Notification) => b.timestamp - a.timestamp);
 
-    return sortedNotifications.map((notification: any)=>{
+    return unreadNotifications.map((notification: any)=>{
         const { timestamp } = notification;
 
         return {
