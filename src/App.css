@@ -19,8 +19,8 @@
   border: 1px solid black;
   height: 400px;
   overflow-y: scroll;
-  scrollbar-color: black;
 }
+
 
 .notif-form-title {
   font-size: x-large;
@@ -47,7 +47,7 @@
   
 }
 
-.notif-card {
+.notification-card {
   height:70px;
   border: 1px solid;
   margin-bottom: 10px;
@@ -56,7 +56,7 @@
   flex-direction: column;
 }
 
-.notif-timestamp {
+.notification-timestamp {
   margin-top: auto;
 }
 

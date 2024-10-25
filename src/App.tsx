@@ -9,71 +9,71 @@ function App() {
   });
 
 
-//   const [notifications, setNotifications] = useState<any>([{
-//     type:'alert',
-//     "timestamp":1729835827065,
-//     content:{text:'Hello'}
-//   },
-//   {
-//     type:'success',
-//     "timestamp":1729835827065,
-//     content:{text:'Hello'}
-//   },
-//   {
-//     type:'info',
-//     "timestamp":1729835827065,
-//     content:{text:'Hello'}
-//   },
-//   {
-//     type:'alert',
-//     "timestamp":1729835827065,
-//     content:{text:'Hello'}
-//   },
-//   {
-//     type:'success',
-//     "timestamp":1729835827065,
-//     content:{text:'Hello'}
-//   },
-//   {
-//     type:'info',
-//     "timestamp":1729835827065,
-//     content:{text:'Hello'}
-//   },
-//   {
-//     type:'alert',
-//     "timestamp":1729835827065,
-//     content:{text:'Hello'}
-//   },
-//   {
-//     type:'success',
-//     "timestamp":1729835827065,
-//     content:{text:'Hello'}
-//   },
-//   {
-//     type:'info',
-//     "timestamp":1729835827065,
-//     content:{text:'Hello'}
-//   },
-//   {
-//     type:'alert',
-//     "timestamp":1729835827065,
-//     content:{text:'Hello'}
-//   },
-//   {
-//     type:'success',
-//     "timestamp":1729835827065,
-//     content:{text:'Hello'}
-//   },
-//   {
-//     type:'info',
-//     "timestamp":1729835827065,
-//     content:{text:'Hello'}
-//   }
-// ]
-//   );
+  const [notifications, setNotifications] = useState<any>([{
+    type:'alert',
+    "timestamp":1729835827065,
+    content:{text:'Hello'}
+  },
+  {
+    type:'success',
+    "timestamp":1729835827065,
+    content:{text:'Hello'}
+  },
+  {
+    type:'info',
+    "timestamp":1729835827065,
+    content:{text:'Hello'}
+  },
+  {
+    type:'alert',
+    "timestamp":1729835827065,
+    content:{text:'Hello'}
+  },
+  {
+    type:'success',
+    "timestamp":1729835827065,
+    content:{text:'Hello'}
+  },
+  {
+    type:'info',
+    "timestamp":1729835827065,
+    content:{text:'Hello'}
+  },
+  {
+    type:'alert',
+    "timestamp":1729835827065,
+    content:{text:'Hello'}
+  },
+  {
+    type:'success',
+    "timestamp":1729835827065,
+    content:{text:'Hello'}
+  },
+  {
+    type:'info',
+    "timestamp":1729835827065,
+    content:{text:'Hello'}
+  },
+  {
+    type:'alert',
+    "timestamp":1729835827065,
+    content:{text:'Hello'}
+  },
+  {
+    type:'success',
+    "timestamp":1729835827065,
+    content:{text:'Hello'}
+  },
+  {
+    type:'info',
+    "timestamp":1729835827065,
+    content:{text:'Hello'}
+  }
+]
+  );
 
   
-  const [notifications, setNotifications] = useState<any>([]);
+  // const [notifications, setNotifications] = useState<any>([]);
 
   const getNotifications = async() =>{
    await fetch('/api/notifications',{
@@ -174,9 +174,9 @@ console.log(formatTimestamp(timestamp)); // Output: "22 Jun 2024, 4:30pm" (for e
           <div className='notif-form-title'>Create Notification</div>
             <textarea className='notif-form-textarea' placeholder='Message' id="notification-message" required value={formData.text} onChange={(e) => onFormDataChange(e, 'text') } />
             <select id="notification-type" value={formData.type} required onChange={(e) => onFormDataChange(e, 'type') }>
-            <option value="" disabled selected>
+            {/* <option value="" disabled selected>
               Choose type
-             </option>
+             </option> */}
               <option value="alert">Alert</option>
               <option value="info">Info</option>
               <option value="success">Success</option>
@@ -185,17 +185,16 @@ console.log(formatTimestamp(timestamp)); // Output: "22 Jun 2024, 4:30pm" (for e
           </form>
         </div>
 
-        <div className='parent-right'> 
-          <div className='notification-feed'>
+        <div id='notification-feed' className='parent-right'> 
+          <div className='notif-feed'>
             {notifications.map((notification:any)=>(
               <div 
-                id="notification-card" 
-                className={`notif-card ${notification.type}-bg`}
+                className={`notification-card ${notification.type}-bg`}
                 >
-              <div>
+              <p className='notification-message'>
                 {notification.content.text}
-              </div>
-              <div id="notification-timestamp" className='notif-timestamp'>
+              </p>
+              <div className="notification-timestamp">
                 {notification.timestamp}
               </div>
               </div>
