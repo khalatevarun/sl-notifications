@@ -155,8 +155,8 @@ function formatTimestamp(timestamp:number) {
             ))}
         </div>
         <div>
-
         </div>
+        <img className='cloudflare-logo' src="src/assets/cf-logo.png"/>
       </div>
     </>
   )

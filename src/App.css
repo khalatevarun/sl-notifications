@@ -78,6 +78,12 @@
   background-color: #90ee90;
 }
 
+.cloudflare-logo {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+}
+
 @media (min-width: 768px) {
   .parent-container {
       flex-direction: row; 
