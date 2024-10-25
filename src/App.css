@@ -2,6 +2,7 @@
 
 .parent-container{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   gap:20px;
   padding: 72px;
@@ -10,14 +11,12 @@
 .parent-left{
   padding: 20px;
   border: 1px solid black;
-  flex:1;
   gap: 20px;
 }
 
 .parent-right{
   padding: 20px;
   border: 1px solid black;
-  flex: 1;
   height: 400px;
   overflow-y: scroll;
   scrollbar-color: black;
@@ -71,4 +70,18 @@
 
 .success-bg {
   background-color: #90ee90;
+}
+
+@media (min-width: 769px) {
+  .parent-container {
+      flex-direction: row; 
+  }
+
+  .parent-left{
+    flex:1;
+  }
+  
+  .parent-right{  
+    flex: 1;
+  }
 }
