@@ -6,14 +6,32 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
 
-  useEffect(()=>{
-
-    fetch('/api/notifications',{
+  const getNotification = async() =>{
+   await fetch('/api/notifications',{
       method:'GET',
     }).then((response)=> response.json()).then((res)=>console.log(res));
 
-    
+    addNotifications();
+  }
 
+  const addNotifications = async() => {
+   await fetch('/api/notifications',{
+      method:'POST',
+      body: JSON.stringify({
+        "type": "alert",
+        "content": {
+          "text": "New notification alerts!"
+        },
+        "read": false
+      }),
+    }).then((response)=> response.json()).then((res)=>console.log(res));
+
+  }
+
+  useEffect(()=>{
+
+    getNotification();
+    
   },[])
 
   return (
