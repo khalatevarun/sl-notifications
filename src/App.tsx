@@ -1,17 +1,16 @@
-import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   const getNotification = async() =>{
    await fetch('/api/notifications',{
       method:'GET',
     }).then((response)=> response.json()).then((res)=>console.log(res));
 
-    addNotifications();
+
+    
   }
 
   const addNotifications = async() => {
@@ -25,14 +24,17 @@ function App() {
         "read": false
       }),
     }).then((response)=> response.json()).then((res)=>console.log(res));
+    
 
   }
 
-  useEffect(()=>{
+  const deleteNotifications = async() => {
+    await fetch('/api/notifications',{
+      method:'DELETE',
+    }).then((response)=> response.json()).then((res)=>console.log(res));
 
-    getNotification();
-    
-  },[])
+
+  }
 
   return (
     <>
@@ -46,8 +48,14 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        <button onClick={getNotification}>
+          Get Notifications
+        </button>
+        <button onClick={addNotifications}>
+          Post Notifications
+        </button>
+        <button onClick={deleteNotifications}>
+          Delete Notifications
         </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR

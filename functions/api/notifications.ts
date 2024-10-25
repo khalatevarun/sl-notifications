@@ -21,7 +21,7 @@ export async function onRequestPost(context){
   }));
 
   let response = await env.NFS.get("notifications");
-  let existingNotifications = JSON.parse(response);
+  let existingNotifications = response ? JSON.parse(response) : null;
 
  if (!Array.isArray(existingNotifications)) {
         existingNotifications = [];
@@ -32,4 +32,18 @@ export async function onRequestPost(context){
   await env.NFS.put('notifications', JSON.stringify(existingNotifications));
 
   return new Response(JSON.stringify(notificationsWithMetadata));
+};
+
+
+export async function onRequestDelete(context){
+    try {
+      await context.env.NFS.delete("notifications");
+
+      return new Response(JSON.stringify({message:"Notifications deleted successfully!"}));
+    }
+    catch (e)
+    {
+      return new Response(e.message, {status: 500});
+    }
+  
 };
