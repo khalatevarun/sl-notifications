@@ -10,7 +10,112 @@ import './App.css'
 
 function App() {
 
-  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [notifications, setNotifications] = useState<Notification[]>([{
+    type: 'alert',
+    content: {
+      text: "Abra ka dabraaaaasdasdasdasldkjaldkajdalsdkjasdlkj",
+    },
+    timestamp: 12123123123,
+    read: false,
+  },
+  {
+    type: 'alert',
+    content: {
+      text: "Abra ka dabraaaaasdasdasdasldkjaldkajdalsdkjasdlkj",
+    },
+    timestamp: 12123123123,
+    read: false,
+  },
+  {
+    type: 'alert',
+    content: {
+      text: "Abra ka dabraaaaasdasdasdasldkjaldkajdalsdkjasdlkj",
+    },
+    timestamp: 12123123123,
+    read: false,
+  },
+  {
+    type: 'alert',
+    content: {
+      text: "Abra ka dabraaaaasdasdasdasldkjaldkajdalsdkjasdlkj",
+    },
+    timestamp: 12123123123,
+    read: false,
+  },
+  {
+    type: 'alert',
+    content: {
+      text: "Abra ka dabraaaaasdasdasdasldkjaldkajdalsdkjasdlkj",
+    },
+    timestamp: 12123123123,
+    read: false,
+  },
+  {
+    type: 'alert',
+    content: {
+      text: "Abra ka dabraaaaasdasdasdasldkjaldkajdalsdkjasdlkj",
+    },
+    timestamp: 12123123123,
+    read: false,
+  },
+  {
+    type: 'alert',
+    content: {
+      text: "Abra ka dabraaaaasdasdasdasldkjaldkajdalsdkjasdlkj",
+    },
+    timestamp: 12123123123,
+    read: false,
+  },
+  {
+    type: 'alert',
+    content: {
+      text: "Abra ka dabraaaaasdasdasdasldkjaldkajdalsdkjasdlkj",
+    },
+    timestamp: 12123123123,
+    read: false,
+  }
+  ,
+  {
+    type: 'alert',
+    content: {
+      text: "Abra ka dabraaaaasdasdasdasldkjaldkajdalsdkjasdlkj",
+    },
+    timestamp: 12123123123,
+    read: false,
+  },
+  {
+    type: 'alert',
+    content: {
+      text: "Abra ka dabraaaaasdasdasdasldkjaldkajdalsdkjasdlkj",
+    },
+    timestamp: 12123123123,
+    read: false,
+  },
+  {
+    type: 'alert',
+    content: {
+      text: "Abra ka dabraaaaasdasdasdasldkjaldkajdalsdkjasdlkj",
+    },
+    timestamp: 12123123123,
+    read: false,
+  },
+  {
+    type: 'alert',
+    content: {
+      text: "Abra ka dabraaaaasdasdasdasldkjaldkajdalsdkjasdlkj",
+    },
+    timestamp: 12123123123,
+    read: false,
+  },
+  {
+    type: 'alert',
+    content: {
+      text: "Abra ka dabraaaaasdasdasdasldkjaldkajdalsdkjasdlkj",
+    },
+    timestamp: 12123123123,
+    read: false,
+  }
+]);
   const [formData, setFormData] = useState({
     text: '',
     type: ''

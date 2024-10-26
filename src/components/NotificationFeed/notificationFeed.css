@@ -3,18 +3,16 @@
     border: 1px solid black;
     height: 400px;
     box-sizing: border-box;
-    overflow-y: scroll;
     display: flex;
     flex-direction: column;
 }
 
 .notification-card {
-    height: 70px; /* Maintains consistent card height */
+    height: 70px;
     padding: 4px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    flex-shrink: 0;
 }
 
 .notification-timestamp {

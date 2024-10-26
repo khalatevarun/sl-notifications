@@ -1,6 +1,5 @@
 import AutoSizer from "react-virtualized-auto-sizer";
 import { FixedSizeList as List } from "react-window";
-
 import { Notification } from "../../utility/types";
 import './notificationFeed.css';
 
@@ -13,16 +12,15 @@ const NotificationFeed = (props: Props) => {
     const { notifications } = props;
 
     const Row = ({ index, style }: { index: number; style: React.CSSProperties }) => (
-        <div
-            className={`notification-card ${notifications[index]?.type}-bg`}
-            style={{ ...style, marginBottom: index === notifications.length - 1 ? 0 : '10px' }}
-        >
+        <div style={style}>
+        <div className={`notification-card ${notifications[index]?.type}-bg`}>
             <p className='notification-message'>
                 {notifications[index]?.content?.text}
             </p>
             <div className="notification-timestamp">
                 {notifications[index]?.timestamp}
             </div>
+        </div>
         </div>
     );
 
@@ -33,7 +31,7 @@ const NotificationFeed = (props: Props) => {
                     <List
                         height={height}
                         width={width}
-                        itemSize={80} // 70px card + 10px gap
+                        itemSize={80} // 70px height + 10px gap 
                         itemCount={notifications.length}
                     >
                         {Row}
