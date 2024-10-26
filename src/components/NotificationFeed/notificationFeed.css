@@ -1,4 +1,4 @@
-.parent-right{
+.parent-right {
     padding: 20px;
     border: 1px solid black;
     height: 400px;
@@ -6,42 +6,41 @@
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-  }
+}
 
 .notification-card {
-    height:70px;
+    height: 70px; /* Maintains consistent card height */
     padding: 4px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
-  }
-  
-  .notification-timestamp {
+}
+
+.notification-timestamp {
     margin-top: auto;
     font-size: small;
-  }
-  
-  .notification-message {
+}
+
+.notification-message {
     margin: 0;
     font-size: small;
-  }
-  
-  .alert-bg {
-    background-color: #ffcccb;
-  }
-  
-  .info-bg {
-    background-color:  #add8e6;
-  }
-  
-  .success-bg {
-    background-color: #90ee90;
-  }
+}
 
-  @media (min-width: 768px) {
-    .parent-right{  
-      flex: 1;
+.alert-bg {
+    background-color: #ffcccb;
+}
+
+.info-bg {
+    background-color: #add8e6;
+}
+
+.success-bg {
+    background-color: #90ee90;
+}
+
+@media (min-width: 768px) {
+    .parent-right {  
+        flex: 1;
     }
-  }
+}
