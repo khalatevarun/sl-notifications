@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import NotificationFeed from './components/NotificationFeed';
 import NotificationForm from './components/NotificationForm';
 
+import cfLogo from './assets/cfLogo.png';
+
 import { Notification } from './utility/types';
 
 import './App.css';
@@ -22,7 +24,6 @@ function App() {
       .then((response) => response.json())
       .then((res) => {
         const formattedNotifications = getFormatNotifications(res);
-        console.log("formaatednotifications>>>",formattedNotifications);
         setNotifications(formattedNotifications);
       })
       .catch((err) => {
@@ -95,7 +96,7 @@ function App() {
           formData={formData}
         />
         <NotificationFeed notifications={notifications} />
-        <img className="cloudflare-logo" src="src/assets/cf-logo.png" />
+        <img className="cloudflare-logo" src={cfLogo} />
       </div>
     </>
   );
