@@ -3,7 +3,7 @@
     border: 1px solid black;
     height: 400px;
     box-sizing: border-box;
-    overflow-y: scroll;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 10px;
