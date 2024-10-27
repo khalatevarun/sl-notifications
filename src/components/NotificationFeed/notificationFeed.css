@@ -6,16 +6,16 @@
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 10px;
   }
 
 .notification-card {
     height:70px;
     padding: 4px;
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
     flex-shrink: 0;
+    margin-top: 10px;
   }
   
   .notification-timestamp {
