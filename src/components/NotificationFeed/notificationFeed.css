@@ -15,11 +15,10 @@
     flex-direction: column;
     box-sizing: border-box;
     flex-shrink: 0;
-    margin-top: 10px;
+    justify-content: space-between;
   }
   
   .notification-timestamp {
-    margin-top: auto;
     font-size: small;
   }
   
