@@ -4,12 +4,13 @@ export async function onRequest() {
         "preferredTypes": ["alert", "info"],
     };
 
-    const response = new Response();
-    const newCookie = `preferences=${JSON.stringify(preferenceData)}; Path=/`;
+    const response = new Response(JSON.stringify(preferenceData), {
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Set-Cookie": `preferences=${JSON.stringify(preferenceData)}; Path=/`
+        }
+    });
 
-    response.headers.set("Content-Type","application/json");
-    response.headers.set("Set-Cookie",newCookie);
-    
-  
     return response;
 }
